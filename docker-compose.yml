@@ -8,15 +8,24 @@ services:
     container_name: hrm-php-apache
     ports:
       - 2007:80
+    networks:
+      - bridge
 
   db:
     container_name: db
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: qwQW12!@
-      MYSQL_DATABASE: monitoring_db
-      MYSQL_USER: monitoring_user
-      MYSQL_PASSWORD: qwQW12!@
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: Coderz12!@
+      MYSQL_DATABASE: hrm-db
+      MYSQL_USER: hrm-user
+      MYSQL_PASSWORD: Coderz12!@
+    command: --sql-mode="STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
     ports:
-      - "64000:3306"
+      - "1103:3306"
+    networks:
+      - bridge
+networks:
+  bridge:
+    driver: bridge

@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  php-apache-environment:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: hrm-php-apache
+    ports:
+      - 2007:80
+
+  db:
+    container_name: db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: qwQW12!@
+      MYSQL_DATABASE: monitoring_db
+      MYSQL_USER: monitoring_user
+      MYSQL_PASSWORD: qwQW12!@
+    ports:
+      - "64000:3306"
